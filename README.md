@@ -18,8 +18,18 @@
 
 ## Future Plans
 
-1. Update the dependencies to later versions
-2. Strip my resume code out of this
-3. Examine alternatives to Webpack-Server
-4. Change state management to Redux over it's current nothing
+1. ~~Update the dependencies to later versions~~
+2. ~~Strip my resume code out of this~~
+2. Refolder my code into the component/action/reducer/container system
+3. Change state management to Redux over it's current nothing
+
+   I want the ability to easily save and load states for the 
+   browser, and the option to include lost information. Local state
+   for objects will remain as needed however, only information needed to
+   regenerate the objects will be saved
+   
+4. Implement local storage
+
+
+
 
