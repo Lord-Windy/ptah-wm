@@ -3,11 +3,9 @@ let webpack = require('webpack');
 
 module.exports = {
   devtool: 'eval',
-  entry: [
-    'webpack-dev-server/client?http://0.0.0.0:80',
-    'webpack/hot/only-dev-server',
-    './lib/index'
-  ],
+  entry: {
+      app: './lib/index.js',
+  },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -17,25 +15,25 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loaders: ['react-hot', 'babel'],
+        loaders: ['react-hot-loader', 'babel-loader'],
         include: path.join(__dirname, 'lib')
       },
       {
         test: /\.scss$/,
-        loader: 'style!css!sass'
+        loader: 'style-loader!css-loader!sass-loader'
       },
       {
 	 test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       },
 
     ]
   },
   resolve: {
-    root: path.resolve('./lib'),
-    extensions: ['', '.js']
+    modules:["node_modules" ,path.resolve('./lib')],
+    extensions: ['.js']
   }
 };
