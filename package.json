@@ -1,6 +1,6 @@
 {
-  "name": "react-wm",
-  "version": "0.0.1",
+  "name": "ptah-wm",
+  "version": "0.8.0",
   "description": "A React Window Manager",
   "scripts": {
     "start": "node server.js",
@@ -9,18 +9,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RoscoeH/react-wm.git"
+    "url": "https://github.com/Lord-Windy/ptah-wm"
   },
   "keywords": [
     "react",
     "reactjs"
   ],
-  "author": "Roscoe Hart <roscoe.hart@me.com> (https://github.com/RoscoeH)",
-  "license": "MIT",
+  "author": "Samuel Brown <sam@samuelbrown.me> (https://github.com/Lord-Windy)",
+  "license": "The Unlicense",
   "bugs": {
-    "url": "https://github.com/RoscoeH/react-wm/issues"
+    "url": "https://github.com/Lord-Windy/ptah-wm/issues"
   },
-  "homepage": "https://github.com/RoscoeH/react-wm",
+  "homepage": "https://github.com/Lord-Windy/ptah-wm",
   "devDependencies": {
     "babel-core": "^6.0.20",
     "babel-eslint": "^4.1.3",

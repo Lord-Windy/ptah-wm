@@ -1,4 +1,4 @@
-# React WM [![Build Status](https://travis-ci.org/RoscoeH/react-wm.svg?branch=master)](https://travis-ci.org/RoscoeH/react-wm)
+# Ptah WM 
 ## Getting Started
 1. Install Node
 2. Install Webpack and the Webpack-Dev-Server
@@ -16,5 +16,10 @@
     ```
 5. Open http://localhost:3000 in your browser
 
-## Component Tree
-![Component Tree](https://www.lucidchart.com/publicSegments/view/a1b41edd-36b8-457d-b7b8-923e64675612/image.png)
+## Future Plans
+
+1. Update the dependencies to later versions
+2. Strip my resume code out of this
+3. Examine alternatives to Webpack-Server
+4. Change state management to Redux over it's current nothing
+
