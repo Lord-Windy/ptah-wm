@@ -28,7 +28,11 @@
    for objects will remain as needed however, only information needed to
    regenerate the objects will be saved
    
-4. Implement local storage
+4. Implement local storage (in terms of cookies) to speed up local
+   starting of information that can simply loaded at the compile time
+   
+5. So back to this to see if it makes much of a difference in the
+   quality of the code 
 
 
 
