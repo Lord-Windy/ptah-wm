@@ -18,7 +18,7 @@
 
 ## Future Plans
 
-1. ~~Update the dependencies to later versions~~
+1. Update the dependencies to later versions
 2. ~~Strip my resume code out of this~~
 2. Refolder my code into the component/action/reducer/container system
 3. Change state management to Redux over it's current nothing
