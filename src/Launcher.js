@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import BallSpace from 'BallSpace';
-import Explain from 'Explain';
+import BallSpace from './base/BallSpace';
+import Explain from './base/Explain';
 
 export default class Launcher extends Component {
 

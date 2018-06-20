@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'; 
+
+const ribbonLength = 7;
 
 export default class Window extends Component {
 
@@ -8,6 +11,9 @@ export default class Window extends Component {
     this.state = {
       offsetX: 0,
       offsetY: 0,
+      topRibbon: false,
+      leftRibbon: false,
+      rightRibbon: false,
       headerMouseDown: false,
       buttonMouseDown: false
     };
@@ -34,16 +40,48 @@ export default class Window extends Component {
   handleMouseDown(event) {
     let windowRect = this.refs.window.getBoundingClientRect();
 
+    let top = false;
+    let left = false;
+    let right = false;
+
+    let Top = event.clientY -windowRect.top;
+    let Left = event.clientX - windowRect.left;
+    let Right =  windowRect.right - event.clientX;
+
+    console.log("Top Spot = " + Top + ", Left Spot: " + Left + ", Right Spot: " + Right);
+    //check if inside ribbon
+
+    // top
+    if (Top <= ribbonLength) {
+      top = true;
+    }
+
+    // left
+    if (Left <= ribbonLength) {
+      left = true;
+    }
+
+    // right
+    if (Right <= ribbonLength) {
+      right = true;
+    }
+
     // Save the mouse's offest relative to the top left of the window
     this.setState({
       offsetX: event.clientX - windowRect.left,
       offsetY: event.clientY - windowRect.top,
+      topRibbon: top,
+      leftRibbon: left,
+      rightRibbon: right,
       headerMouseDown: true,
     });
   }
 
   handleMouseUp(event) {
     this.setState({
+      topRibbon: false,
+      leftRibbon: false,
+      rightRibbon: false,
       headerMouseDown: false,
       buttonMouseDown: false
     });
@@ -52,13 +90,29 @@ export default class Window extends Component {
   handleMouseMove(event) {
     // If the header is being dragged and we're not holding a header button
     if (this.state.headerMouseDown && !this.state.buttonMouseDown) {
+      if (this.state.rightRibbon || this.state.leftRibbon || this.state.topRibbon) {
+        if (this.state.rightRibbon) {
+          let expand = event.clientX - (this.props.x + this.props.width);
+          this.props.onExpandRight(this.props.id, expand);
+        }
 
-      // Move to the mouse's position with minus the offset when the drag
-      // started
-      let windowRect = this.refs.window.getBoundingClientRect();
-      let x = event.clientX - this.state.offsetX;
-      let y = event.clientY - this.state.offsetY;
-      this.props.onMove(this.props.id, x, y);
+        if (this.state.leftRibbon) {
+          let expand = this.props.x - event.clientX;
+          this.props.onExpandLeft(this.props.id, expand);
+        }
+
+        if (this.state.topRibbon) {
+          let expand = this.props.y - event.clientY;
+          this.props.onExpandUp(this.props.id, expand);
+        }
+      } else {
+
+        // started
+        let windowRect = this.refs.window.getBoundingClientRect();
+        let x = event.clientX - this.state.offsetX;
+        let y = event.clientY - this.state.offsetY;
+        this.props.onMove(this.props.id, x, y);
+      }
     }
   }
 
@@ -132,13 +186,13 @@ export default class Window extends Component {
 }
 
 Window.propTypes = {
-  title: React.PropTypes.string,
-  id: React.PropTypes.number.isRequired,
-  x: React.PropTypes.number.isRequired,
-  z: React.PropTypes.number.isRequired,
-  width: React.PropTypes.number,
-  height: React.PropTypes.number,
-  space: React.PropTypes.object
+  title: PropTypes.string,
+  id: PropTypes.number.isRequired,
+  x: PropTypes.number.isRequired,
+  z: PropTypes.number.isRequired,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  space: PropTypes.object
 }
 
 Window.defaultProps = {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Window from 'Window';
-import Launcher from 'Launcher';
-import BallSpace from 'BallSpace';
+import Window from './Window';
+import Launcher from '../Launcher';
 
 export default class WindowManager extends Component {
 
@@ -24,6 +23,10 @@ export default class WindowManager extends Component {
     this.handleWindowClose = this.handleWindowClose.bind(this);
     this.handleWindowMaximise = this.handleWindowMaximise.bind(this);
     this.handleAddApp = this.handleAddApp.bind(this);
+
+    this.handleExpandWindowLeft = this.handleExpandWindowLeft.bind(this);
+    this.handleExpandWindowRight = this.handleExpandWindowRight.bind(this);
+    this.handleExpandWindowUp = this.handleExpandWindowUp.bind(this);
   }
 
 
@@ -70,6 +73,27 @@ export default class WindowManager extends Component {
     app.winWidth = window.innerWidth;
     app.winHeight = window.innerHeight;
 
+    this.updateApp(id, app);
+  }
+
+  handleExpandWindowLeft(id, expand) {
+    let app = this.findApp(id);
+    app.winX = app.winX - expand;
+    app.winWidth = app.winWidth + expand;
+
+    this.updateApp(id, app);
+  }
+
+  handleExpandWindowRight(id, expand) {
+    let app = this.findApp(id);
+    app.winWidth = app.winWidth + expand;
+    this.updateApp(id, app);
+  }
+
+  handleExpandWindowUp(id, expand) {
+    let app = this.findApp(id);
+    app.winY = app.winY - expand;
+    app.winHeight = app.winHeight + expand;
     this.updateApp(id, app);
   }
 
@@ -205,7 +229,10 @@ export default class WindowManager extends Component {
             onResize={this.handleResizeWindow}
             onMove={this.handleWindowMove}
             onClose={this.handleWindowClose}
-            onMaximise={this.handleWindowMaximise} />
+            onMaximise={this.handleWindowMaximise}
+            onExpandLeft={this.handleExpandWindowLeft}
+            onExpandUp={this.handleExpandWindowUp}
+            onExpandRight={this.handleExpandWindowRight} />
       </div>
     );
   }
