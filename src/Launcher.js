@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BallSpace from './base/BallSpace';
 import Explain from './base/Explain';
+import SampleGame from './additional/SampleGame';
 
 export default class Launcher extends Component {
 
@@ -60,16 +61,40 @@ export default class Launcher extends Component {
 
   }
 
+  handleMakeSampleGame() {
+
+    let space = Launcher.getSampleGame();
+
+    let app = {
+      id: -1, //no need to worry about this, WindowManager will fix it
+      winX: 150,
+      winY: 100,
+      winZ: 0, //another one WindowManager will handle
+      winWidth: 400,
+      winHeight: 400,
+      space: space
+    }
+
+    this.props.addApp(app);
+
+  }
+
   static getExplain(){
     return (
       <Explain className="textWindow"/>
-    )
+    );
   }
 
   static getBallspace(){
     return (
       <BallSpace />
-    )
+    );
+  }
+
+  static getSampleGame(){
+    return (
+      <SampleGame />
+    );
   }
 
   //&#9883;
@@ -95,6 +120,12 @@ export default class Launcher extends Component {
               className="launcher-btn"
               onClick={this.handleMakeBall.bind(this)}>
               O
+            </button>
+            <button
+              title="Business Simulator"
+              className="launcher-btn"
+              onClick={this.handleMakeSampleGame.bind(this)}>
+              B
             </button>
             </span>
           : null
