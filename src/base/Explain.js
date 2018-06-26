@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import ReactMarkdown from 'react-markdown';
 
 export default class Explain extends Component {

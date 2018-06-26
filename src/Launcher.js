@@ -70,8 +70,8 @@ export default class Launcher extends Component {
       winX: 150,
       winY: 100,
       winZ: 0, //another one WindowManager will handle
-      winWidth: 400,
-      winHeight: 400,
+      winWidth: 800,
+      winHeight: 600,
       space: space
     }
 
