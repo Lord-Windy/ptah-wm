@@ -32,6 +32,8 @@ export default class TalkState extends Component {
                     <p> {this.props.description}</p>
                 </div>
                 <button onClick={this.back}> Back </button>
+                <button onClick={this.replyNo}> No </button>
+                <button onClick={this.replyYes}> Yes </button>
             </div>
         );
     }

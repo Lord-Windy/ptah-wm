@@ -32,7 +32,15 @@ export default class SampleGame extends Component {
     }
 
     handleReply(answer){
-        console.log("Hello");
+        if (answer){
+            this.setState({
+                ViewState: view_states.YES
+            });
+        } else {
+            this.setState({
+                ViewState: view_states.NO
+            });
+        }
     }
 
     handleBack() {
