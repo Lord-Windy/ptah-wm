@@ -1,14 +1,16 @@
 
-const read_states = {
+export const read_states = {
     DIDNOTTALK: 0,
     NO: 1,
     YES: 2
 };
 
-const view_states = {
+export const view_states = {
     PEOPLE: 0,
     TALK: 1,
-    INFO: 2,
+    YES: 2,
+    NO: 3,
+    INFO: 4,
 };
 
 const Weeks = 20;
@@ -32,6 +34,24 @@ const Characters = [
     {Name:"Grand Explorer", Func: GrandExplorerConversation}
 ];
 
+export function initialState() {
+    let characters = [];
+
+    for (let i = 0; i < Characters.length; i++){
+        characters.push(initCharacter(Characters[i]));
+    }
+    
+    return({
+        ViewState: view_states.PEOPLE,
+        DescriptionText: "Set to default",
+        ConversationText: "Set to default",
+        YesText: "Set to Default",
+        NoText: "Set to Default",
+        Characters: characters,
+        CurrentCharacterID: -1
+    });
+}
+
 function initCharacter(name) {
 
     let responses = [];
@@ -45,18 +65,6 @@ function initCharacter(name) {
         Func: name.Func,
         Responses: responses
     };
-}
-
-export function initialState() {
-    let characters = [];
-
-    for (let i = 0; i < Characters.length; i++){
-        characters.push(initCharacter(Characters[i]));
-    }
-    
-    return({
-        Characters: characters
-    });
 }
 
 function HeartherConversation(self, data) {
