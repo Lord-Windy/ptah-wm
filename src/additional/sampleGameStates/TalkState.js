@@ -22,6 +22,10 @@ export default class TalkState extends Component {
         this.props.back();
     }
 
+    returnDisabled() {
+        return( "disabled")
+    }
+
     render(){
         return(
             <div>
@@ -31,9 +35,15 @@ export default class TalkState extends Component {
                 <div className="picture-column"> 
                     <p> {this.props.description}</p>
                 </div>
-                <button onClick={this.back}> Back </button>
+                {this.props.decision ? 
+                <div><button onClick={this.back} disabled> Back </button>
                 <button onClick={this.replyNo}> No </button>
-                <button onClick={this.replyYes}> Yes </button>
+                <button onClick={this.replyYes}> Yes </button></div>
+                :
+                <div><button onClick={this.back}> Back </button>
+                <button onClick={this.replyNo} disabled> No </button>
+                <button onClick={this.replyYes} disabled> Yes </button></div>
+                }
             </div>
         );
     }
@@ -44,6 +54,7 @@ TalkState.propTypes = {
     description: PropTypes.string,
     reply: PropTypes.func.isRequired,
     back: PropTypes.func.isRequired,
+    decision: PropTypes.bool.isRequired
 }
 
 TalkState.defaultProps = {

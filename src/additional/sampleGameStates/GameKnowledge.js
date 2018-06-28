@@ -42,6 +42,7 @@ export function initialState() {
     }
     
     return({
+        Week: 0,
         ViewState: view_states.PEOPLE,
         DescriptionText: "Set to default",
         ConversationText: "Set to default",

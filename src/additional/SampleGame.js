@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import EntryState from './sampleGameStates/EntryState'
 import PeopleState from './sampleGameStates/PeopleState'
 import TalkState from './sampleGameStates/TalkState'
-import {view_states, initialState} from './sampleGameStates/GameKnowledge'
+import {view_states, read_states,initialState} from './sampleGameStates/GameKnowledge'
 
 
 //<TalkState reply={this.handleReply} back={this.handleBack}/>
@@ -32,19 +32,35 @@ export default class SampleGame extends Component {
     }
 
     handleReply(answer){
+        let week = this.state.Week;
+        let new_view = view_states.PEOPLE;
+        let characters = this.state.Characters;
+
         if (answer){
-            this.setState({
-                ViewState: view_states.YES
-            });
+            new_view = view_states.YES
+            characters[this.state.CurrentCharacterID].Responses[week] = read_states.YES; 
         } else {
-            this.setState({
-                ViewState: view_states.NO
-            });
+            new_view = view_states.NO
+            characters[this.state.CurrentCharacterID].Responses[week] = read_states.NO;
         }
+        console.log(characters);
+        week += 1;
+        this.setState({
+            Week: week,
+            ViewState: new_view,
+            Characters: characters
+        });
     }
 
     handleBack() {
-        console.log("back");
+        this.setState({
+            ViewState: view_states.PEOPLE,
+            DescriptionText: "Unset",
+            ConversationText: "Unset",
+            YesText: "Unset",
+            NoText: "Unset",
+            CurrentCharacterID: -1
+        });
     }
 
     toRender() {
@@ -56,6 +72,7 @@ export default class SampleGame extends Component {
                 description={this.state.description}
                 reply={this.handleReply}
                 back={this.handleBack}
+                decision={true}
             />
         }
         if (this.state.ViewState === view_states.YES) {
@@ -64,6 +81,7 @@ export default class SampleGame extends Component {
                 description={this.state.description}
                 reply={this.handleReply}
                 back={this.handleBack}
+                decision={false}
             />
         }
         if (this.state.ViewState === view_states.NO) {
@@ -72,6 +90,7 @@ export default class SampleGame extends Component {
                 description={this.state.description}
                 reply={this.handleReply}
                 back={this.handleBack}
+                decision={false}
             />
         }
 
