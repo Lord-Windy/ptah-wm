@@ -47,17 +47,17 @@ export class Policy extends Component {
     renderPolicy() {
 
         let returnList = [];
+
         console.log(this.props.Policies);
-        if (this.props.Content.length != this.props.Policies.length +1) {
-            console.log("You need to include at least 1 more string length than policy options, otherwise this will crash. It is very particular")
-        }
-
-        returnList.push(<span> {this.props.Content[0]} </span>)
-       
-
+        
         for (let i = 0; i < this.props.Policies.length; i++) {
-            returnList.push(this.renderSelected(this.props.Policies[i], i));
-            returnList.push(<span> {this.props.Content[i+1]} </span>)
+            if (Array.isArray(this.props.Policies[i])) {
+                returnList.push(this.renderSelected(this.props.Policies[i], i));
+            } else {
+                returnList.push(<span> {this.props.Policies[i]} </span>)
+            }
+            
+            
         }
 
         console.log(returnList);
@@ -78,7 +78,6 @@ export class Policy extends Component {
 Policy.propTypes = {
     Type: PropTypes.number.isRequired,
     Policies: PropTypes.array.isRequired,
-    Content: PropTypes.array.isRequired,
 }
 
 export default class PolicyState extends Component {

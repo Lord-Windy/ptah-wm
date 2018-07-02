@@ -99,11 +99,10 @@ export default class SampleGame extends Component {
     }
     //{this.toRender()}
     render() {
-        let items = [["Hello", "Something", "Good"], ["Swibble", "Simply Delicious", "YAYYY"], ["Pling", "Something Else", "Funny third thing"]];
-        let content = ["Bitch", "Please", "I'm the", "Best"];
+        let items = ["Bitch", ["Hello", "Something", "Good"], "Please", ["Swibble", "Simply Delicious", "YAYYY"], ["Pling", "Something Else", "Funny third thing"], "I'm da best"];
         return (
         <div> 
-           <Policy Policies={items} Type={1} Content={content} />
+           <Policy Policies={items} Type={1} />
         </div>
         );
     }

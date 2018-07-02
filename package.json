@@ -2,6 +2,7 @@
   "name": "ptah-wm-v2",
   "version": "0.1.0",
   "private": true,
+  "license":"CC0-1.0",
   "devDependencies": {
     "node-sass": "^4.9.0"
   },
