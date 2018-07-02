@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import {Policy} from './sampleGameStates/PolicyState'
 import EntryState from './sampleGameStates/EntryState'
 import PeopleState from './sampleGameStates/PeopleState'
 import TalkState from './sampleGameStates/TalkState'
@@ -96,11 +97,13 @@ export default class SampleGame extends Component {
 
         return renderer;
     }
-
+    //{this.toRender()}
     render() {
+        let items = [["Hello", "Something", "Good"], ["Swibble", "Simply Delicious", "YAYYY"], ["Pling", "Something Else", "Funny third thing"]];
+        let content = ["Bitch", "Please", "I'm the", "Best"];
         return (
         <div> 
-           {this.toRender()}
+           <Policy Policies={items} Type={1} Content={content} />
         </div>
         );
     }
