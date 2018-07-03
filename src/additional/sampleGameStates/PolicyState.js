@@ -76,17 +76,35 @@ export class Policy extends Component {
 
 //Content should be 1+ the number of policies
 Policy.propTypes = {
-    Type: PropTypes.number.isRequired,
     Policies: PropTypes.array.isRequired,
 }
 
 export default class PolicyState extends Component {
 
+    generatePolicyComponents() {
+        let PolicyComponentList = [];
+        console.log(this.props.PolicyList);
+        for (let i = 0; i < this.props.PolicyList.length; i++) {
+            //console.log("This is the policy: " + this.props.PolicyList[i].Policy)
+            PolicyComponentList.push(<Policy Policies={this.props.PolicyList[i].Policy}/>);
+        }
+
+        return (PolicyComponentList);
+    }
+
     render() {
+
+        let PolicyComponentList = this.generatePolicyComponents();
+
         return(
             <div>
-                <p>Example</p>
+                {PolicyComponentList}
             </div>
         );
     }
+}
+
+PolicyState.proTypes = {
+    handleChange: PropTypes.func.isRequired,
+    PolicyList: PropTypes.array.isRequired
 }

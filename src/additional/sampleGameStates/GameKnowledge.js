@@ -15,6 +15,18 @@ export const view_states = {
 
 const Weeks = 20;
 
+export const policy_group = {
+    HAHA: 0,
+    OTHERS: 1,
+}
+
+export const Policies = [
+    {Group: policy_group.HAHA, NumOfPolicy: 3, Policy: ["Bitch", ["Hello", "Something", "Good"], "Please", ["Swibble", "Simply Delicious", "YAYYY"], ["Pling", "Something Else", "Funny third thing"], "I'm da best"]},
+    {Group: policy_group.HAHA, NumOfPolicy: 3, Policy: ["Bitch", ["Hello", "Something", "Good"], "Please", ["Swibble", "Simply Delicious", "YAYYY"], ["Pling", "Something Else", "Funny third thing"], "I'm da best"]},
+    {Group: policy_group.HAHA, NumOfPolicy: 3, Policy: ["Bitch", ["Hello", "Something", "Good"], "Please", ["Swibble", "Simply Delicious", "YAYYY"], ["Pling", "Something Else", "Funny third thing"], "I'm da best"]},
+    {Group: policy_group.HAHA, NumOfPolicy: 3, Policy: ["Bitch", ["Hello", "Something", "Good"], "Please", ["Swibble", "Simply Delicious", "YAYYY"], ["Pling", "Something Else", "Funny third thing"], "I'm da best"]},
+];
+
 const Characters = [
     {Name:"Hearther", Func: HeartherConversation},
     {Name:"Treasurer", Func: TreasurerConversation},
@@ -34,6 +46,22 @@ const Characters = [
     {Name:"Grand Explorer", Func: GrandExplorerConversation}
 ];
 
+function initialPolicyPosition() {
+    let policies = [];
+
+
+    for (let i = 0; i < Policies.length; i++){
+        let toAdd = [];
+        policies.push(toAdd);
+        
+        for (let j = 0; j < Policies[i].NumOfPolicy; j++){
+            //policies[i].push(0);
+        }
+    }
+    console.log(policies);
+    return policies;
+}
+
 export function initialState() {
     let characters = [];
 
@@ -50,7 +78,8 @@ export function initialState() {
         YesText: "Set to Default",
         NoText: "Set to Default",
         Characters: characters,
-        CurrentCharacterID: -1
+        CurrentCharacterID: -1,
+        PolicyPositions: initialPolicyPosition(),
     });
 }
 

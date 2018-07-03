@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import {Policy} from './sampleGameStates/PolicyState'
+import PolicyState from './sampleGameStates/PolicyState'
 import EntryState from './sampleGameStates/EntryState'
 import PeopleState from './sampleGameStates/PeopleState'
 import TalkState from './sampleGameStates/TalkState'
-import {view_states, read_states,initialState} from './sampleGameStates/GameKnowledge'
+import {view_states, read_states,initialState, Policies} from './sampleGameStates/GameKnowledge'
 
 
 //<TalkState reply={this.handleReply} back={this.handleBack}/>
@@ -14,8 +14,14 @@ export default class SampleGame extends Component {
         this.handleReply = this.handleReply.bind(this);
         this.handleBack = this.handleBack.bind(this);
         this.handleTalkTo = this.handleTalkTo.bind(this);
+        this.handlePolicyReturn = this.handlePolicyReturn.bind(this);
         this.toRender = this.toRender.bind(this);
         this.state = initialState();
+        
+    }
+
+    handlePolicyReturn() {
+        console.log ("Hi Mum");
     }
 
     handleTalkTo(personID) {
@@ -99,10 +105,12 @@ export default class SampleGame extends Component {
     }
     //{this.toRender()}
     render() {
-        let items = ["Bitch", ["Hello", "Something", "Good"], "Please", ["Swibble", "Simply Delicious", "YAYYY"], ["Pling", "Something Else", "Funny third thing"], "I'm da best"];
+        //let items = ["Bitch", ["Hello", "Something", "Good"], "Please", ["Swibble", "Simply Delicious", "YAYYY"], ["Pling", "Something Else", "Funny third thing"], "I'm da best"];
+        //console.log(this.state);
+        
         return (
         <div> 
-           <Policy Policies={items} Type={1} />
+           <PolicyState handleChange={this.handleBack} PolicyList={Policies}/>
         </div>
         );
     }
